@@ -1,0 +1,23 @@
+<html>
+    <script>
+        function fun()
+        {
+            let n = document.getElementById("num").value;
+            document.getElementById("my1").innerHTML=factorial(n);
+        }
+        function factorial(n){
+            if(n === 0){
+                return 1;
+            }
+            else{
+                return n*factorial(n-1);
+            }
+        }
+
+    </script>
+    <form >
+        <input type="text" id ="num">
+        <input type="button" value="Click Me" onclick="fun()">
+        <p id="my1"></p>
+    </form>
+</html>

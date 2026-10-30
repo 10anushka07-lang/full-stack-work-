@@ -1,0 +1,47 @@
+<html>
+    <script>
+       console.log("Script 1 " +a);// we are accessing the variable before it is declared, which will result in undefined being logged to the console.
+       // hoisting 
+       a=10;
+       var a ;
+// limitations of var 
+       // var can be used to redeclare the same variable multiple times within the same scope,
+       //  which can lead to unexpected behavior and bugs in the code.
+       var n =5;
+       console.log("Script 2 " +n);
+       var n = 10; // redeclaring the variable n
+       console.log("Script 3 " +n); // output: 10
+       //no block scope for var, so the variable a is accessible outside of the block in which it was declared.
+// es6 introduced let and const keywords   
+// let keyword block scope 
+// refernce error in let 
+for (var i = 0; i < 10; i++) {
+  console.log("Script 4 " +i); // output: 0, 1, 2, 3, 4
+}
+Console.log("Script 5 " +i); // 
+    
+    // let features 
+    // no hoisting issue
+    console.log("Script 6 " +b); // ReferenceError: b is not defined
+    let b = 20;
+    // variables declared using let are hoisted but remain uninitialized thus avoid accidental acess before declaration
+    // no redeclaration in the same scope
+    //let m = 5;
+     //let m = 10; // SyntaxError: Identifier 'm' has already been declared
+    // suitable for for loop iteration variables   
+ // const keyword   
+ // we prefer this when we want to make a constant variable 
+ // a number cannot be changed once it is assigned a value 
+ // but array can be changed 
+ const arr = [1, 2, 3];
+ arr[0] = 10; // This is allowed, as we are modifying the contents of the array, not reassigning the variable itself.+
+console.log("Script 7 " +arr); // output: [10, 2, 3]
+ </script>
+// block scope for let and const
+// reassign is not allowed for const
+// it must be initialized at the time of declaration
+// syntax error 
+// no redeclaration in the same scope for let and const
+
+
+</html>

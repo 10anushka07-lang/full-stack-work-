@@ -1,0 +1,20 @@
+h1{
+    color:aquamarine;
+    font-style:italic;
+}
+body{
+    background-color: black;
+    color: white;
+}
+/* This is a comment in CSS
+box model in css 
+if we wat to create  */
+div{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border: 2px solid green;
+    padding: 10px;
+}
+
+

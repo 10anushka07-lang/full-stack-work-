@@ -1,0 +1,11 @@
+<div class="add-form">
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <app-header></app-header>
+    <app-addstudent (studentAdded)="onStudentAdded($event)"></app-addstudent>
+    <app-footer></app-footer>
+    
+
+    <div>Average Grade: {{ averageGrade }}</div>
+  </div>
+</div>

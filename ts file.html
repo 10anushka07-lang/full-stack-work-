@@ -1,0 +1,654 @@
+# Full Stack Development & JavaScript — Complete Assignment Answers
+
+---
+
+## 1. Full Stack Development  
+
+**Explanation:**
+Full Stack Development refers to the practice of building both the **frontend** (client-side, what the user sees — HTML, CSS, JavaScript, React/Angular/Vue) and the **backend** (server-side logic, databases, APIs — Node.js, Express, Django, Java Spring, databases like MongoDB/MySQL) of a web application. A Full Stack Developer can work across the entire technology stack, from the user interface to the database.
+
+**Role in modern software development:**
+- Enables faster development since one person/team understands the whole system.
+- Reduces communication gaps between frontend and backend teams.
+- Essential for startups and agile teams that need end-to-end ownership of features.
+- Encourages better system architecture decisions since the developer understands data flow from UI to database.
+
+**Real-life applications:**
+1. **E-commerce platforms (e.g., Amazon, Flipkart):** Frontend shows product listings, cart, checkout UI; backend handles inventory, payment processing, order management, and database storage.
+2. **Social media applications (e.g., Instagram, Twitter/X):** Frontend renders feeds, stories, and chat UI; backend manages user authentication, media storage, notifications, and real-time data via APIs.
+
+**Hinglish Explanation:**
+Full Stack Development ka matlab hai ki ek developer frontend (jo user dekhta hai — UI, design) aur backend (server, database, business logic) dono par kaam kar sakta hai. Aaj ke time mein companies aise developers ko prefer karti hain jo poora system samajh sakein — UI se lekar database tak. Jaise Amazon jaisi e-commerce site mein frontend product dikhata hai aur backend payment aur order ko manage karta hai. Instagram jaisi app mein frontend feed dikhata hai aur backend photos store karta hai, notifications bhejta hai.
+
+---
+
+## 2. JavaScript vs TypeScript
+
+| Feature | JavaScript | TypeScript |
+|---|---|---|
+| Typing | Dynamically typed | Statically typed (optional type annotations) |
+| Error detection | Runtime errors | Compile-time errors |
+| Learning curve | Easier for beginners | Slightly steeper (needs compilation step) |
+| Tooling support | Basic | Advanced (autocomplete, refactoring, IntelliSense) |
+| Compilation | Runs directly in browser | Compiles (transpiles) to JavaScript |
+| OOP features | Limited (prototypal) | Interfaces, generics, enums, access modifiers |
+| File extension | `.js` | `.ts` |
+
+**Advantages of TypeScript:**
+1. **Early error detection** — catches type mismatches before running the code.
+2. **Better code readability and maintainability** for large projects.
+3. **Improved IDE support** (auto-suggestions, refactoring tools).
+4. **Supports modern OOP concepts** like interfaces and generics.
+
+**Example:**
+```typescript
+// JavaScript — no type checking
+function add(a, b) {
+  return a + b;
+}
+add(5, "10"); // "510" (no error, but wrong result)
+
+// TypeScript — type-safe
+function addTS(a: number, b: number): number {
+  return a + b;
+}
+addTS(5, "10"); // ❌ Compile-time error: Argument of type 'string' is not assignable to 'number'
+```
+
+**Hinglish Explanation:**
+JavaScript dynamically typed language hai, matlab variable ka type run karte time decide hota hai, isliye kai baar galat type ki value pass karne par bhi error nahi aata aur output galat aa jaata hai. TypeScript isi JavaScript ka superset hai jisme hum types define kar sakte hain (jaise `number`, `string`), isse coding karte waqt hi (compile time par) error pakad liya jaata hai, jo bade projects mein bahut helpful hota hai.
+
+---
+
+## 3. `var`, `let`, and `const`
+
+| Feature | `var` | `let` | `const` |
+|---|---|---|---|
+| Scope | Function-scoped | Block-scoped | Block-scoped |
+| Re-declaration | Allowed | Not allowed | Not allowed |
+| Re-assignment | Allowed | Allowed | Not allowed |
+| Hoisting | Hoisted (initialized as `undefined`) | Hoisted (but in "temporal dead zone") | Hoisted (but in "temporal dead zone") |
+
+**Example:**
+```javascript
+// var - function scoped
+function testVar() {
+  if (true) {
+    var x = 10;
+  }
+  console.log(x); // 10 (accessible outside if block)
+}
+
+// let - block scoped
+function testLet() {
+  if (true) {
+    let y = 20;
+  }
+  console.log(y); // ❌ Error: y is not defined
+}
+
+// const - block scoped, cannot be reassigned
+const z = 30;
+z = 40; // ❌ Error: Assignment to constant variable
+```
+
+**Hinglish Explanation:**
+`var` function-level scope rakhta hai aur isse dobara declare/assign dono kiya ja sakta hai. `let` block-level scope rakhta hai (jaise `{}` ke andar) aur reassign kar sakte hain lekin redeclare nahi. `const` bhi block-scoped hai lekin ek baar value set hone ke baad usse change nahi kar sakte — yeh constant values (jaise PI, config values) ke liye use hota hai. Modern JavaScript mein `let` aur `const` ka use recommended hai, `var` avoid kiya jaata hai kyunki uska scope confusing bugs create karta hai.
+
+---
+
+## 4. Arrow Functions (ES6)
+
+**Explanation:**
+Arrow functions provide a shorter syntax for writing function expressions, introduced in ES6. They do not have their own `this` binding — they inherit `this` from the surrounding (lexical) scope.
+
+**Syntax:**
+```javascript
+// Traditional function
+function add(a, b) {
+  return a + b;
+}
+
+// Arrow function
+const addArrow = (a, b) => {
+  return a + b;
+};
+
+// Shorter (implicit return, single expression)
+const addShort = (a, b) => a + b;
+
+// Single parameter (no parentheses needed)
+const square = n => n * n;
+
+// No parameters
+const greet = () => console.log("Hello!");
+```
+
+**Advantages:**
+1. Shorter, cleaner syntax.
+2. No own `this` — avoids common bugs in callbacks and object methods.
+3. Implicit return for single-expression functions (no `return` keyword needed).
+4. Great for array methods like `map`, `filter`, `reduce`.
+
+**Example with `this`:**
+```javascript
+function Timer() {
+  this.seconds = 0;
+  setInterval(() => {
+    this.seconds++; // 'this' correctly refers to Timer instance
+    console.log(this.seconds);
+  }, 1000);
+}
+```
+
+**Hinglish Explanation:**
+Arrow functions ES6 mein aaye ek naya, chhota syntax likhne ka tarika hai function banane ka. Inki khaasiyat yeh hai ki inka apna `this` nahi hota — yeh apne surrounding (bahar wale) scope se `this` leta hai, isse `setInterval` ya callback functions mein `this` se related bugs kam hote hain. Chhoti functions ke liye code bahut concise ho jaata hai, jaise `const square = n => n * n;`.
+
+---
+
+## 5. Objects and Arrays in JavaScript
+
+**Objects** store data as key-value pairs, useful for representing real-world entities.
+**Arrays** store ordered collections of values (can be of any type), accessed via index.
+
+```javascript
+// Object example
+const car = {
+  brand: "Toyota",
+  model: "Corolla",
+  year: 2023
+};
+console.log(car.brand); // Toyota
+
+// Array example
+const fruits = ["Apple", "Banana", "Mango"];
+console.log(fruits[1]); // Banana
+```
+
+**Program: Store and display student information using an object**
+```javascript
+// Student object
+const student = {
+  rollNo: 101,
+  name: "Riya",
+  course: "BCA",
+  marks: 85,
+  displayInfo: function () {
+    console.log(`Roll No: ${this.rollNo}`);
+    console.log(`Name: ${this.name}`);
+    console.log(`Course: ${this.course}`);
+    console.log(`Marks: ${this.marks}`);
+  }
+};
+
+student.displayInfo();
+// Output:
+// Roll No: 101
+// Name: Riya
+// Course: BCA
+// Marks: 85
+```
+
+**Hinglish Explanation:**
+Object mein data key-value pairs ki form mein store hota hai, jaise `name: "Riya"`. Array mein data ordered list ki form mein store hota hai jise index (0, 1, 2...) se access karte hain. Upar diye gaye program mein humne ek `student` object banaya jisme uski saari details (roll number, naam, course, marks) store hain, aur ek method `displayInfo()` bana kar unhe print kiya.
+
+---
+
+## 6. JavaScript Modules (`export` and `import`)
+
+**Explanation:**
+Modules allow JavaScript code to be split into separate, reusable files. Each module can **export** functions, objects, or variables, and other files can **import** them when needed. This improves code organization, reusability, and maintainability.
+
+**Example:**
+```javascript
+// mathUtils.js — exporting
+export function add(a, b) {
+  return a + b;
+}
+
+export const PI = 3.14159;
+
+export default function multiply(a, b) {
+  return a * b;
+}
+```
+
+```javascript
+// main.js — importing
+import multiply, { add, PI } from './mathUtils.js';
+
+console.log(add(2, 3));       // 5
+console.log(PI);              // 3.14159
+console.log(multiply(4, 5));  // 20
+```
+
+- `export` (named) — can export multiple values per file, imported using `{ }`.
+- `export default` — one per file, imported without curly braces.
+
+**Hinglish Explanation:**
+Modules ka use tab hota hai jab hum apna code chhote-chhote alag files mein todna chahte hain taaki code organized aur reusable rahe. `export` keyword se hum kisi function/variable ko doosri file mein use karne ke liye available banate hain, aur `import` keyword se use dusri file mein le kar aate hain. Ek file mein sirf ek `export default` ho sakta hai, lekin multiple named `export` ho sakte hain.
+
+---
+
+## 7. Classes in JavaScript
+
+**Explanation:**
+Classes (introduced in ES6) are templates/blueprints for creating objects. They support properties, methods, and constructors, enabling object-oriented programming (OOP) in JavaScript.
+
+**Example: Student class**
+```javascript
+class Student {
+  constructor(name, marks) {
+    this.name = name;
+    this.marks = marks;
+  }
+
+  displayDetails() {
+    console.log(`Student Name: ${this.name}`);
+    console.log(`Marks: ${this.marks}`);
+  }
+}
+
+// Creating objects (instances)
+const student1 = new Student("Riya", 85);
+const student2 = new Student("Aman", 76);
+
+student1.displayDetails();
+// Student Name: Riya
+// Marks: 85
+
+student2.displayDetails();
+// Student Name: Aman
+// Marks: 76
+```
+
+**Hinglish Explanation:**
+Class ek blueprint/template hoti hai jiske basis par hum multiple objects bana sakte hain. `constructor` method object create hote hi automatically call hoti hai aur usme properties (jaise `name`, `marks`) set hoti hain. `new` keyword se class ka object banaya jaata hai. Upar diye code mein `Student` class ke andar `displayDetails()` method har student ki details print karta hai.
+
+---
+
+## 8. Asynchronous Programming
+
+**Explanation:**
+- **Synchronous programming:** Code executes line by line, in sequence. Each statement waits for the previous one to finish before running.
+- **Asynchronous programming:** Code can start a task (like a network request or timer) and continue executing other code without waiting for that task to finish. The result is handled later using callbacks, Promises, or `async/await`.
+
+**Synchronous example:**
+```javascript
+console.log("Start");
+console.log("Middle");
+console.log("End");
+// Output: Start, Middle, End (in order)
+```
+
+**Asynchronous example:**
+```javascript
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Data fetched from server");
+}, 2000);
+
+console.log("End");
+
+// Output:
+// Start
+// End
+// Data fetched from server (after 2 seconds)
+```
+
+**Using async/await:**
+```javascript
+async function fetchData() {
+  console.log("Fetching...");
+  const response = await new Promise(resolve =>
+    setTimeout(() => resolve("Data received"), 2000)
+  );
+  console.log(response);
+}
+fetchData();
+```
+
+**Hinglish Explanation:**
+Synchronous programming mein code line-by-line, ek ke baad ek chalta hai — jab tak pehli line complete nahi hoti, agli line start nahi hoti. Asynchronous programming mein code kisi time-lagne wale task (jaise API call, file read) ko start karke aage ka code chalata rehta hai, bina wait kiye — result baad mein milta hai. Web applications mein API calls jaise cases mein asynchronous programming zaroori hoti hai taaki page "freeze" na ho.
+
+---
+
+## 9. JSON and its Importance
+
+**Explanation:**
+JSON (JavaScript Object Notation) is a lightweight, text-based data format used to store and exchange data between a server and a client (or between different systems). It is language-independent, though it derives its syntax from JavaScript object structure.
+
+**Importance in web applications:**
+- Used as the standard format for sending/receiving data via REST APIs.
+- Easy for humans to read and write, easy for machines to parse.
+- Lightweight compared to XML — faster data transfer.
+- Supported natively by JavaScript (`JSON.parse()` / `JSON.stringify()`) and virtually all backend languages.
+
+**JSON Data Types:**
+```json
+{
+  "string": "Hello",
+  "number": 25,
+  "boolean": true,
+  "nullValue": null,
+  "array": [1, 2, 3],
+  "object": { "nested": "value" }
+}
+```
+
+- **String** — text in double quotes: `"name": "Riya"`
+- **Number** — integer or float: `"marks": 85`
+- **Boolean** — `true` / `false`
+- **Null** — represents empty value: `"middleName": null`
+- **Array** — ordered list: `"subjects": ["Math", "Science"]`
+- **Object** — nested key-value structure: `"address": { "city": "Delhi" }`
+
+**Hinglish Explanation:**
+JSON ek lightweight data format hai jo data ko store aur transfer karne ke liye use hota hai, especially client aur server ke beech. Yeh human-readable bhi hai aur machine-parseable bhi. Web applications mein jab bhi frontend backend se data mangwata hai (API ke through), wo data zyadatar JSON format mein hi aata-jaata hai. JSON mein string, number, boolean, null, array, aur object — yeh 6 basic data types support hote hain.
+
+---
+
+## 10. Working with the Given JSON Object
+
+```javascript
+// Given JSON string
+const jsonData = `{
+  "id": 101,
+  "name": "Riya",
+  "course": "BCA",
+  "marks": 85
+}`;
+
+// 1. Parse the JSON data
+const student = JSON.parse(jsonData);
+console.log(student); // { id: 101, name: 'Riya', course: 'BCA', marks: 85 }
+
+// 2. Display student's name
+console.log("Name:", student.name); // Name: Riya
+
+// 3. Display student's marks
+console.log("Marks:", student.marks); // Marks: 85
+
+// 4. Add a new property "semester"
+student.semester = 4;
+console.log(student); // { id: 101, name: 'Riya', course: 'BCA', marks: 85, semester: 4 }
+
+// 5. Convert modified object back into JSON
+const updatedJson = JSON.stringify(student);
+console.log(updatedJson);
+// {"id":101,"name":"Riya","course":"BCA","marks":85,"semester":4}
+```
+
+**Hinglish Explanation:**
+Sabse pehle `JSON.parse()` se JSON string ko JavaScript object mein convert kiya, taaki uski properties access ki ja sakein (`student.name`, `student.marks`). Uske baad naya property `semester` object mein direct add kar diya (`student.semester = 4`). Aakhir mein `JSON.stringify()` se object ko wapas JSON string format mein convert kiya, taaki use server ko bheja ja sake ya file mein save kiya ja sake.
+
+---
+
+## 11. `JSON.parse()` vs `JSON.stringify()`
+
+| Feature | `JSON.parse()` | `JSON.stringify()` |
+|---|---|---|
+| Purpose | Converts JSON string → JavaScript object | Converts JavaScript object → JSON string |
+| Direction | String to Object | Object to String |
+| Use case | Reading data received from server/API | Sending data to server/API, saving to file/localStorage |
+
+**Example:**
+```javascript
+// JSON.parse() — string to object
+const jsonStr = '{"name": "Aman", "age": 21}';
+const obj = JSON.parse(jsonStr);
+console.log(obj.name); // Aman (now usable as a JS object)
+
+// JSON.stringify() — object to string
+const person = { name: "Aman", age: 21 };
+const str = JSON.stringify(person);
+console.log(str); // '{"name":"Aman","age":21}' (now can be sent over network)
+```
+
+**Hinglish Explanation:**
+`JSON.parse()` ka kaam hai JSON string ko JavaScript object mein convert karna, taaki hum uski properties `.` (dot) notation se access kar sakein. `JSON.stringify()` iske ulta kaam karta hai — JavaScript object ko JSON string mein convert karta hai, jise server ko bhejne ya file/localStorage mein save karne ke liye use kiya jaata hai.
+
+---
+
+## 12. JSON Schema
+
+**Explanation:**
+JSON Schema is a specification/format used to **validate the structure** of a JSON document — it defines what properties should exist, their data types, which are required, and any constraints (like min/max length or value range). It ensures data consistency when exchanging JSON between systems.
+
+**Purpose:**
+- Validates incoming/outgoing JSON data.
+- Documents the expected structure of an API request/response.
+- Helps catch data errors before they cause bugs.
+
+**JSON Schema for a BCA student (id, name, email, marks):**
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Student",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique student ID"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the student"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Student's email address"
+    },
+    "marks": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Marks obtained (0-100)"
+    }
+  },
+  "required": ["id", "name", "email", "marks"]
+}
+```
+
+**Hinglish Explanation:**
+JSON Schema ek blueprint hai jo batata hai ki ek valid JSON object kaisa dikhna chahiye — kaunse fields honi chahiye, unka data type kya hoga, aur kaunsi fields zaroori (required) hain. Iska use tab hota hai jab hum API se aane ya jaane wale data ko validate karna chahte hain, taaki galat format ka data system mein na aaye.
+
+---
+
+## 13. REST API
+
+**Explanation:**
+REST (Representational State Transfer) API is an architectural style for building web services that allows communication between a client (frontend) and a server (backend) using standard HTTP methods. REST APIs treat data as "resources" (e.g., students, products) that can be accessed and manipulated via URLs (endpoints).
+
+**Role in frontend-backend communication:**
+- The **frontend** sends HTTP requests (GET, POST, PUT, DELETE) to specific endpoints.
+- The **backend** processes the request, interacts with the database, and sends back a response (usually in JSON format).
+- This decouples frontend and backend — they can be developed and deployed independently, as long as they agree on the API contract.
+
+```
+Frontend (React/Angular) <---- HTTP Request/Response (JSON) ----> Backend (Node.js/Express) <----> Database
+```
+
+**Hinglish Explanation:**
+REST API ek tarika hai jisse frontend aur backend aapas mein baat karte hain HTTP requests (GET, POST, PUT, DELETE) ke through. Frontend request bhejta hai kisi specific URL (endpoint) par, backend us data ko process karke database se le kar JSON format mein response wapas bhejta hai. Isse frontend aur backend alag-alag independently develop ho sakte hain.
+
+---
+
+## 14. GET, POST, PUT, DELETE
+
+| Method | Purpose | Example |
+|---|---|---|
+| **GET** | Retrieve data from server | `GET /api/students` — fetch all students |
+| **POST** | Create new data on server | `POST /api/students` — add a new student |
+| **PUT** | Update existing data (full replace) | `PUT /api/students/101` — update student with ID 101 |
+| **DELETE** | Remove data from server | `DELETE /api/students/101` — delete student with ID 101 |
+
+**Example using `fetch()`:**
+```javascript
+// GET - Retrieve
+fetch('/api/students')
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+// POST - Create
+fetch('/api/students', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name: "Riya", course: "BCA", marks: 85 })
+});
+
+// PUT - Update
+fetch('/api/students/101', {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ marks: 90 })
+});
+
+// DELETE - Remove
+fetch('/api/students/101', { method: 'DELETE' });
+```
+
+**Hinglish Explanation:**
+GET method se data server se mangwaya (fetch) jaata hai. POST method se naya data server par create/add kiya jaata hai. PUT method se already existing data ko update kiya jaata hai. DELETE method se koi data server se remove kiya jaata hai. Yeh chaaro HTTP methods mil kar CRUD operations (Create, Read, Update, Delete) ko REST API ke through possible banate hain.
+
+---
+
+## 15. REST API Endpoints — Student Management System
+
+| Operation | HTTP Method | Endpoint | Description |
+|---|---|---|---|
+| Add a new student | **POST** | `/api/students` | Creates a new student record |
+| Get all students | **GET** | `/api/students` | Retrieves list of all students |
+| Get a specific student | **GET** | `/api/students/:id` | Retrieves details of one student by ID |
+| Update a student | **PUT** | `/api/students/:id` | Updates existing student's details |
+| Delete a student | **DELETE** | `/api/students/:id` | Removes a student record |
+
+**Example (Express.js route definitions):**
+```javascript
+app.post('/api/students', addStudent);
+app.get('/api/students', getAllStudents);
+app.get('/api/students/:id', getStudentById);
+app.put('/api/students/:id', updateStudent);
+app.delete('/api/students/:id', deleteStudent);
+```
+
+**Hinglish Explanation:**
+Student Management System ke liye REST endpoints is tarah design kiye jaate hain: naya student add karne ke liye `POST /api/students`, sabhi students dekhne ke liye `GET /api/students`, ek specific student dekhne ke liye `GET /api/students/:id`, kisi student ki details update karne ke liye `PUT /api/students/:id`, aur student ko delete karne ke liye `DELETE /api/students/:id`.
+
+---
+
+## 16. How JSON and REST APIs Work Together
+
+**Explanation:**
+REST APIs define **how** data is requested and sent (using HTTP methods and URLs), while JSON defines the **format** in which that data is structured and exchanged. Together, they form the backbone of communication in full-stack web applications.
+
+**Workflow:**
+1. Frontend sends an HTTP request (e.g., `GET /api/students`) to the REST API.
+2. Backend fetches data from the database (e.g., MongoDB, MySQL).
+3. Backend converts this data into JSON format using something like `JSON.stringify()` (or automatically via frameworks like Express's `res.json()`).
+4. The JSON response travels over the network back to the frontend.
+5. Frontend parses this JSON (`JSON.parse()` or automatically via `fetch().json()`) and renders it in the UI.
+
+```javascript
+// Backend (Express.js)
+app.get('/api/students', (req, res) => {
+  const students = [{ id: 1, name: "Riya", marks: 85 }];
+  res.json(students); // sends JSON response
+});
+
+// Frontend
+fetch('/api/students')
+  .then(res => res.json()) // parses JSON response
+  .then(data => console.log(data));
+```
+
+**Hinglish Explanation:**
+REST API batata hai ki data kaise request/send kiya jaayega (HTTP methods aur URLs ke through), aur JSON batata hai ki wo data kis format mein hoga. Jab frontend backend se data mangta hai, backend database se data nikal kar use JSON format mein convert karke bhejta hai, aur frontend us JSON ko parse karke screen par dikhata hai. Yeh dono technologies mil kar full-stack applications mein data ka smooth exchange possible banati hain.
+
+---
+
+## 17. Arrow Function — Average of Marks
+
+```javascript
+const marks = [85, 90, 78, 92, 66];
+
+const average = (arr) => arr.reduce((sum, num) => sum + num, 0) / arr.length;
+
+console.log("Average Marks:", average(marks)); // Average Marks: 82.2
+```
+
+**Hinglish Explanation:**
+Is program mein humne ek arrow function `average` banaya jo array ke andar diye gaye sabhi numbers ka `reduce()` method se sum nikaalta hai, aur fir us sum ko array ki length se divide karke average return karta hai. `reduce()` array ke har element par ek function chalata hai aur ek single value (yahan sum) return karta hai.
+
+---
+
+## 18. Filter Students Scoring More Than 70 Marks
+
+```javascript
+const students = [
+  { name: "Riya", marks: 85 },
+  { name: "Aman", marks: 65 },
+  { name: "Sonal", marks: 78 },
+  { name: "Karan", marks: 55 },
+  { name: "Priya", marks: 92 }
+];
+
+const toppers = students
+  .filter(student => student.marks > 70)
+  .map(student => student.name);
+
+console.log("Students scoring more than 70:", toppers);
+// Students scoring more than 70: [ 'Riya', 'Sonal', 'Priya' ]
+```
+
+**Hinglish Explanation:**
+Yahan humne `students` naam ka ek array banaya jisme har element ek object hai (naam aur marks ke saath). `filter()` method un students ko select karta hai jinke marks 70 se zyada hain, aur `map()` method un filtered students mein se sirf naam nikaal leta hai. Dono methods ko chain karke ek hi line mein result mil jaata hai.
+
+---
+
+## 19. ES6 Features (Five Important Ones)
+
+**1. Arrow Functions**
+Shorter syntax, no own `this`.
+```javascript
+const add = (a, b) => a + b;
+```
+
+**2. `let` and `const`**
+Block-scoped variable declarations replacing `var`.
+```javascript
+let count = 0;
+const MAX = 100;
+```
+
+**3. Template Literals**
+String interpolation using backticks and `${}`, supports multi-line strings.
+```javascript
+const name = "Riya";
+console.log(`Hello, ${name}! Welcome to BCA.`);
+```
+
+**4. Destructuring**
+Extract values from arrays/objects easily.
+```javascript
+const student = { name: "Riya", marks: 85 };
+const { name, marks } = student;
+console.log(name, marks); // Riya 85
+
+const [a, b] = [10, 20];
+console.log(a, b); // 10 20
+```
+
+**5. Classes and Modules**
+OOP-style syntax (`class`, `constructor`, `extends`) and `import`/`export` for modular code (both covered in detail above in Q6 and Q7).
+
+**Other notable ES6 features:** default parameters, spread/rest operators (`...`), Promises, `Map`/`Set`, and enhanced object literals.
+
+**Hinglish Explanation:**
+ES6 (ECMAScript 2015) JavaScript ka ek major update tha jisne bahut saari nayi features introduce ki. Arrow functions se code chhota hota hai. `let`/`const` se better variable scoping milti hai. Template literals se strings ke andar variables easily insert kar sakte hain (backticks ke saath). Destructuring se object/array se values seedhe nikal kar variables mein daal sakte hain. Classes se OOP concepts (jaise inheritance) JavaScript mein use ho paate hain, aur Modules se code ko organized tareeke se split kar sakte hain.
+
+---
+
+*End of Document*

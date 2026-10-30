@@ -1,0 +1,33 @@
+//typescript
+// - superset of javascript 
+//- it does not checks data types at runtime
+//js = in js we infer the datatype 
+// hume dtatype yaad nhi rehta agra zyada lines ka code ho 
+// error runtime pe aayega
+// type nhi btana pdta js mein 
+// js - compiles 
+// ts - transpiles - typescript mein dono bta sakte datatype bhi , or nhi bhi
+// explicit - telling the datatype
+// implicit- not telling the datatype by inference like we do in python 
+// type inference - let a =10;
+
+let a:number =10;
+a=20;
+typebinding 
+let b:number = number[];
+a.push (9);
+a.push(pot);
+// strictly typed -defined type \
+value assign karne se pehle type ko check karega 
+// array create karna hai multiple datatypes 
+- let b:[number, string, boolean] = [10, "hello", true];
+// sequence of datatypes is important 
+tuple
+// read only array - hum apne hisab se dekh sakte ki value kya add karni 
+// how to create object in typescript
+let student:{name:string, age:number} = {name:"Alice", age:25};
+// agar string ka type mention nhi 
+
+
+let student1:{name:string, age:number} = {name:"Alice", age:25};
+// jab tak question mark nhi hoga , array me mixed types 
